@@ -1,6 +1,5 @@
 import pygame
 from settings import *
-import os
 
 class Tile(pygame.sprite.Sprite):
 

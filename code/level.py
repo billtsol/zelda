@@ -3,6 +3,7 @@ from settings import *
 from tile import Tile
 from player import Player
 
+
 class Level:
     def __init__(self):
 
@@ -28,11 +29,10 @@ class Level:
                     Tile((x,y), [self.visible_sprites, self.obstacle_sprites])
 
                 elif col == 'p': # draw player
-                    Player((x,y), [self.visible_sprites])
-
-
+                    self.player = Player((x,y), [self.visible_sprites],self.obstacle_sprites)
 
 
     def run(self):
         # update and draw the game
         self.visible_sprites.draw(self.display_serface) # draw the visible sprites
+        self.visible_sprites.update()
