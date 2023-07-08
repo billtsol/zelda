@@ -8,6 +8,8 @@ class Player(pygame.sprite.Sprite):
         self.image = pygame.image.load('graphics/test/player.png').convert_alpha()
         self.rect = self.image.get_rect(topleft = pos)
 
+        self.hitbox = self.rect.inflate(0, -26) # x , y
+
         # Movement
         self.direction = pygame.math.Vector2()
         self.speed = 5
@@ -37,31 +39,33 @@ class Player(pygame.sprite.Sprite):
         if self.direction.magnitude() != 0: # you cannot normalize 0 vector
             self.direction = self.direction.normalize() # normalize vector to dicrease player speed
 
-        self.rect.x += self.direction.x * speed # updating the x-coordinate of a rectangle's position
+        self.hitbox.x += self.direction.x * speed # updating the x-coordinate of a rectangle's position
         self.collision('horizontal') # check horizontal collision
 
-        self.rect.y += self.direction.y * speed # updating the y-coordinate of a rectangle's position
+        self.hitbox.y += self.direction.y * speed # updating the y-coordinate of a rectangle's position
         self.collision('vertical') # check vertical collision
+
+        self.rect.center = self.hitbox.center
 
     def collision(self,direction):
         if direction == 'horizontal':
             for sprite in self.obstacle_sprites:
-                if sprite.rect.colliderect(self.rect):
+                if sprite.hitbox.colliderect(self.hitbox):
                     if self.direction.x > 0 : # player moving right
-                        self.rect.right = sprite.rect.left # move player right side to sprite left side
+                        self.hitbox.right = sprite.hitbox.left # move player right side to sprite left side
 
                     if self.direction.x < 0 : # player moving left
-                        self.rect.left = sprite.rect.right # move player left side to sprite right side
+                        self.hitbox.left = sprite.hitbox.right # move player left side to sprite right side
 
 
         if direction == 'vertical':
              for sprite in self.obstacle_sprites:
-                if sprite.rect.colliderect(self.rect):
+                if sprite.hitbox.colliderect(self.hitbox):
                     if self.direction.y > 0 : # player moving down
-                        self.rect.bottom = sprite.rect.top # move player bottom side to sprite top side
+                        self.hitbox.bottom = sprite.hitbox.top # move player bottom side to sprite top side
 
                     if self.direction.y < 0 : # player moving up
-                        self.rect.top = sprite.rect.bottom # move player top side to sprite bottom side
+                        self.hitbox.top = sprite.hitbox.bottom # move player top side to sprite bottom side
 
 
     def update(self):
