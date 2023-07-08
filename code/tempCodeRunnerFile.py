@@ -1,2 +1,0 @@
-
-            self.clock.tick(FPS)
