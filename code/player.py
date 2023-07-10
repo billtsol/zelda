@@ -185,7 +185,6 @@ class Player(Entity):
         else :
             self.image.set_alpha(255)
 
-
     def get_full_weapon_damage(self):
         return self.stats['attack'] + weapon_data[self.weapon]['damage']
 

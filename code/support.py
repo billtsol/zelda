@@ -21,4 +21,3 @@ def import_folder(path):
             surface_list.append(image_surface)
 
     return surface_list
-

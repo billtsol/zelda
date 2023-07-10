@@ -11,7 +11,6 @@ class Entity(pygame.sprite.Sprite):
         # Movement
         self.direction = pygame.math.Vector2()
 
-
     def move(self, speed):
         if self.direction.magnitude() != 0: # you cannot normalize 0 vector
             self.direction = self.direction.normalize() # normalize vector to dicrease player speed

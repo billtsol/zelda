@@ -58,7 +58,6 @@ class UI:
             pygame.draw.rect(self.display_surface,UI_BORDER_COLOR,bg_rect,3)
         return bg_rect
 
-
     def weapon_overlay(self,weapon_index,has_switched):
         bg_rect = self.selection_box(10,630,has_switched)
         weapon_surf = self.weapon_graphics[weapon_index]
@@ -72,7 +71,6 @@ class UI:
         magic_rect = magic_surf.get_rect(center = bg_rect.center)
 
         self.display_surface.blit(magic_surf, magic_rect)
-
 
     def display(self, player):
         self.show_bar(player.health,player.stats['health'],self.heath_bar_rect, HEALTH_COLOR)
