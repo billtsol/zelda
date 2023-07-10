@@ -1,8 +1,9 @@
 import pygame
 from settings import *
 from support import import_folder
+from entity import Entity
 
-class Player(pygame.sprite.Sprite):
+class Player(Entity):
 
     def __init__(self, pos, groups, obstacle_sprites, create_attack, destroy_attack,create_magic):
         super().__init__(groups)
@@ -14,12 +15,8 @@ class Player(pygame.sprite.Sprite):
         # graphics setup
         self.import_player_assets()
         self.status = 'down'
-        self.frame_index = 0
-        self.animation_speed = 0.15
 
         # Movement
-        self.direction = pygame.math.Vector2()
-
         self.attacking = False
         self.attack_cooldown = 400
         self.attack_time = 0
@@ -49,7 +46,6 @@ class Player(pygame.sprite.Sprite):
         self.energy = self.stats['energy']
         self.exp = 123
         self.speed = self.stats['speed']
-
 
     def import_player_assets(self):
         character_path = 'graphics/player/'
@@ -145,38 +141,6 @@ class Player(pygame.sprite.Sprite):
                         self.magic_index = 0
 
                     self.magic = list(magic_data.keys())[self.magic_index]
-
-    def move(self, speed):
-        if self.direction.magnitude() != 0: # you cannot normalize 0 vector
-            self.direction = self.direction.normalize() # normalize vector to dicrease player speed
-
-        self.hitbox.x += self.direction.x * speed # updating the x-coordinate of a rectangle's position
-        self.collision('horizontal') # check horizontal collision
-
-        self.hitbox.y += self.direction.y * speed # updating the y-coordinate of a rectangle's position
-        self.collision('vertical') # check vertical collision
-
-        self.rect.center = self.hitbox.center
-
-    def collision(self,direction):
-        if direction == 'horizontal':
-            for sprite in self.obstacle_sprites:
-                if sprite.hitbox.colliderect(self.hitbox):
-                    if self.direction.x > 0 : # player moving right
-                        self.hitbox.right = sprite.hitbox.left # move player right side to sprite left side
-
-                    if self.direction.x < 0 : # player moving left
-                        self.hitbox.left = sprite.hitbox.right # move player left side to sprite right side
-
-
-        if direction == 'vertical':
-             for sprite in self.obstacle_sprites:
-                if sprite.hitbox.colliderect(self.hitbox):
-                    if self.direction.y > 0 : # player moving down
-                        self.hitbox.bottom = sprite.hitbox.top # move player bottom side to sprite top side
-
-                    if self.direction.y < 0 : # player moving up
-                        self.hitbox.top = sprite.hitbox.bottom # move player top side to sprite bottom side
 
     def cooldowns(self):
         current_time = pygame.time.get_ticks()
