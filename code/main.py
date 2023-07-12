@@ -16,9 +16,13 @@ class Game:
     def run(self):
         while True:
             for event in pygame.event.get():
-              if event.type == pygame.QUIT: # quit
-                  pygame.quit()
-                  sys.exit()
+                if event.type == pygame.QUIT: # quit
+                    pygame.quit()
+                    sys.exit()
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_m:
+                        self.level.toggle_menu()
+
 
             self.screen.fill('black') # make the screen black
 
