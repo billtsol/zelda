@@ -8,6 +8,10 @@ Welcome to my Zelda-style RPG project implemented in Python! This project aims t
 
 - **Graphics and Animations**: The game includes visually appealing graphics and smooth animations to enhance the gameplay experience.
 
+- **Battle Enemies**: Engage in turn-based battles with enemies you encounter. Use your combat skills and strategies to defeat them and earn xp.
+
+- **Level Up**: Gain experience points (XP) by defeating enemies and completing quests. Level up to increase your character's stats and become stronger.
+
 ## Installation
 
 1. Clone the repository: `git clone https://github.com/your-username/your-repository.git`
