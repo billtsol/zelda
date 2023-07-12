@@ -24,7 +24,7 @@ class Game:
                         self.level.toggle_menu()
 
 
-            self.screen.fill('black') # make the screen black
+            self.screen.fill(WATER_COLOR) # make the screen black
 
             self.level.run() # run level
 
