@@ -2,7 +2,7 @@
 
 Welcome to my Zelda-style RPG project implemented in Python! This project aims to provide a sophisticated game experience inspired by the classic Legend of Zelda series, incorporating graphics, animations, fake depth, upgrade mechanics, a level map, and much more.
 
-![Gameplay Screenshot](screenshot.png)
+![Gameplay Screenshot](img/img1.png)
 
 ## Features
 
