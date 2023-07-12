@@ -13,21 +13,23 @@ class Game:
 
         self.level = Level() # initialize level
 
+        # sound
+        main_sound = pygame.mixer.Sound('audio/main.ogg')
+        main_sound.set_volume(0.13)
+        main_sound.play(loops = -1)
+
     def run(self):
         while True:
             for event in pygame.event.get():
-                if event.type == pygame.QUIT: # quit
+                if event.type == pygame.QUIT or self.level.player.health <= 0: # quit
                     pygame.quit()
                     sys.exit()
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_m:
                         self.level.toggle_menu()
 
-
             self.screen.fill(WATER_COLOR) # make the screen black
-
             self.level.run() # run level
-
             pygame.display.update() # update the screen
             self.clock.tick(FPS)
 
