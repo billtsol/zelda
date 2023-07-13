@@ -19,7 +19,7 @@ Welcome to my Zelda-style RPG project implemented in Python! This project aims t
 
 ## Usage
 
-1. Navigate to the project directory: `cd your-repository`
+1. Navigate to the project directory: `cd repository/code`
 2. Run the game: `python main.py`
 3. Enjoy playing the Zelda-style RPG!
 
