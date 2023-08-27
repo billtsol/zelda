@@ -20,15 +20,17 @@ class Game:
 
     def run(self):
         while True:
+            if self.level.player.health <= 0:
+                self.level = Level()
             for event in pygame.event.get():
-                if event.type == pygame.QUIT or self.level.player.health <= 0: # quit
+                if event.type == pygame.QUIT: # quit
                     pygame.quit()
                     sys.exit()
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_m:
                         self.level.toggle_menu()
 
-            self.screen.fill(WATER_COLOR) # make the screen black
+            self.screen.fill(WATER_COLOR)
             self.level.run() # run level
             pygame.display.update() # update the screen
             self.clock.tick(FPS)
